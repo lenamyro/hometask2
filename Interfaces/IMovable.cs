@@ -4,6 +4,6 @@ namespace SpaceButtleHomeTask2.Interfaces
 {
     public interface IMovable
     {
-        Point MoveLinearMotion(UObject uObject, Point position);
+        Point MoveLinearMotion(Point oldPosition, Point position);
     }
 }

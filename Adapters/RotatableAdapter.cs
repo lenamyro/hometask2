@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace SpaceButtleHomeTask2
 {
-    public class RotatableAdapter : IAdapter<int>
+    public class RotatableAdapter : IAdapter
     {
         IRotatble _rotation;
         public RotatableAdapter(IRotatble rotation)
@@ -12,7 +12,7 @@ namespace SpaceButtleHomeTask2
         }
 
 
-        public Point Execute(UObject uObject, int direction)
-            => _rotation.Rotate(uObject, direction);
+        public Point Execute(Point oldPosition, Direction<int> direction)
+            => _rotation.Rotate(oldPosition, direction.Value);
     }
 }

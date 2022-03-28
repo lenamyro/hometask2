@@ -5,14 +5,19 @@ namespace SpaceButtleHomeTask2
 {
     public class Rotation : IRotatble
     {
+        private readonly int _velocity;
+        private readonly int _directionNumber;
 
-        public Point Rotate(UObject uObject, int direction)
+        public Rotation(int velocity, int directionNumber )
         {
-            var position = uObject.Position;
-            var velocity = uObject.Velocity;
-            var directionNumber = uObject.DirectionNumber;
-            var x = position.X + velocity * Math.Cos(direction / 360 * directionNumber);
-            var y = position.Y + velocity * Math.Cos(direction / 360 * directionNumber);
+            _velocity = velocity;
+            _directionNumber = directionNumber;
+        }
+
+        public Point Rotate(Point oldPosition, int direction)
+        {
+            var x = oldPosition.X + _velocity * Math.Cos(direction / 360 * _directionNumber);
+            var y = oldPosition.Y + _velocity * Math.Cos(direction / 360 * _directionNumber);
 
             return new Point((int)x, (int)y);
         }

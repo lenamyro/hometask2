@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace SpaceButtleHomeTask2
 {
-    public class MovableAdapter : IAdapter<Point>
+    public class IAdapter : IAdapter
     {
         private readonly IMovable _movement;
 
@@ -12,7 +12,8 @@ namespace SpaceButtleHomeTask2
             _movement = movement;
         }
 
-        public Point Execute(UObject uObject, Point newPoint)
-            => _movement.MoveLinearMotion(uObject, newPoint);
+        public Point Execute(Point oldPosition, Direction<Point> newPosition)
+             => _movement.MoveLinearMotion(oldPosition, newPosition.Value);
     }
+           
 }

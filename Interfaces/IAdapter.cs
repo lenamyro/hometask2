@@ -2,8 +2,8 @@
 
 namespace SpaceButtleHomeTask2.Interfaces
 {
-    public interface IAdapter<T>
+    public interface IAdapter
     {
-        Point Execute(UObject _uObject, T value);
+        Point Execute<TDirection>(Point oldValue, Direction<TDirection> direction);
     }
 }

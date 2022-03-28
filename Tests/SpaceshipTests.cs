@@ -17,16 +17,10 @@ namespace SpaceButtleHomeTask2.Tests
 
             var expectedPoint = new Point(5, 8);
 
-            var movableAdapterMock = new Mock<MovableAdapter>();
-            var rotableAdapterMock = new Mock<IAdapter<int>>();
-            var uObject = new UObject()
-            {
-                DirectionNumber = 8,
-                Position = new Point(0,0),
-                Velocity = 0
-            };
+            var movableAdapterMock = new Mock<IAdapter>();
+            var rotableAdapterMock = new Mock<IAdapter>();
 
-            var spaceship = new Spaceship(uObject, movableAdapterMock.Object, rotableAdapterMock.Object);
+            var spaceship = new Spaceship(movableAdapterMock.Object, rotableAdapterMock.Object);
 
             spaceship.Move(currentPosition);
             spaceship.Move(newPosition);

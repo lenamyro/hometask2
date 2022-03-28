@@ -4,7 +4,7 @@ namespace SpaceButtleHomeTask2.Interfaces
 {
     public interface IRotatble
     {
-        Point Rotate(UObject uObject, int direction);
+        Point Rotate(Point oldPosition, int direction);
     }
 }
 

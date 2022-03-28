@@ -2,20 +2,14 @@
 using System.Drawing;
 
 var directionNumber = 8;
+var velocity = 0;
 
-
-var uObject = new UObject()
-{
-    Position = new Point(0, 0),
-    Velocity = 0,
-    DirectionNumber = 8
-};
 
 var movableAdapter = new MovableAdapter(new Motion());
-var rotatbleAdapter = new RotatableAdapter(new Rotation());
+var rotatbleAdapter = new RotatableAdapter(new Rotation(velocity, directionNumber));
 
 
-var spaceShip = new Spaceship(uObject, movableAdapter, rotatbleAdapter);
+var spaceShip = new Spaceship(movableAdapter, rotatbleAdapter);
 spaceShip.Move(new Point(-7, 3));
 spaceShip.Rotate(5);
 

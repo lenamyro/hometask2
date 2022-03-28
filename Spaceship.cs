@@ -5,31 +5,44 @@ namespace SpaceButtleHomeTask2
 {
     public class Spaceship: ISpaceship
     {
-        private readonly IAdapter<Point> _movableAdapter;
-        private readonly IAdapter<int> _rotatableAdapter;
-        private readonly UObject _uObject;
-        public Spaceship(UObject uObject, IAdapter<Point> movableAdapter, IAdapter<int> rotatableAdapter)
+        private Point _currentPosition;
+
+        private readonly IAdapter _movableAdapter;
+        private readonly IAdapter _rotatableAdapter;
+        public Spaceship(IAdapter movableAdapter, IAdapter rotatableAdapter, Point? currentPosition = null)
         {
             _movableAdapter = movableAdapter;
             _rotatableAdapter = rotatableAdapter;
-            _uObject = uObject;
+
+            if (currentPosition != null)
+                _currentPosition = currentPosition.Value;
+
+            _currentPosition = new Point(0, 0);
         }
+
         public void Move(Point p)
         {
-           var currentPosition = _movableAdapter.Execute(_uObject, p);
-            _uObject.Position = currentPosition;
+           var currentPosition = _movableAdapter.Execute(GetCurrentPosition(), new Direction<Point>()
+               {
+                   Value = p
+               });
+            _currentPosition = currentPosition;
         }
            
 
         public void Rotate(int direction)
         {
-            var currentPosition = _rotatableAdapter.Execute(_uObject, direction);
-            _uObject.Position = currentPosition;
+            var currentPosition = _rotatableAdapter.Execute(GetCurrentPosition(), , new Direction<int>()
+            {
+                Value = direction
+            });
+
+            _currentPosition = currentPosition;
 
         }
 
         public Point GetCurrentPosition()
-            => _uObject.Position;
+            => _currentPosition;
 
     }
 }
